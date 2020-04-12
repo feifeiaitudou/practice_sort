@@ -10,6 +10,6 @@ import (
 
 func main() {
 	selectData := []int{8, 21, 3, 4, 5, 6}
-	sorts.SortSelect(selectData)
+	sorts.BubbleSort(selectData)
 	fmt.Println(selectData)
 }
