@@ -10,6 +10,6 @@ import (
 
 func main() {
 	selectData := []int{29, 19, 85, -1, 8888, 81, 92, 101, 9999, -1002, 8, 21, 3, 4, 5, 6, 88, 1, 28, 0, 42, 34}
-	sorts.ShellSort(selectData)
+	sorts.MergeSort(selectData)
 	fmt.Println(selectData)
 }
