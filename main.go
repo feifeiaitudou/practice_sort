@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"practice_sort/sorts"
+	"psort/sorts"
 )
 
 //https://mp.weixin.qq.com/s/IAZnN00i65Ad3BicZy5kzQ
@@ -10,6 +10,6 @@ import (
 
 func main() {
 	selectData := []int{8, 21, 3, 4, 5, 6}
-	sorts.ShellSort(selectData)
+	sorts.InertSort(selectData)
 	fmt.Println(selectData)
 }
