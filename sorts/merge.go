@@ -1,36 +1,75 @@
 package sorts
 
-import "fmt"
+//稳定, nlog2n 空间复杂度n
 
-//归并排序,适用于处理较大规模的数据排序
-//时间复杂度nlog2n, 空间复杂度n 稳定
-//将一个大的序列分隔为两个序列,然后将两个序列进行排序,最后将两个序列进行合并
-//需要额外的空间保存两个子序列
-//一直分,直到序列中还剩下一个的时候(剩下的那个认为为有序)
-//分治法  分:将一个序列分为两个子序列; 治: 将两个序列进行排序; 合: 将两个有序的子序列合并为一个(迭代或者递归过程)
+//关键在于正确找到序列中点
+//递归切割序列(不改变原序列的索引),然后排序和合并(在递归完成以后进行)
+
 func MergeSort(data []int) {
-	//先尝试分一下
-	left := make([]int, 0)
-	right := make([]int, 0)
+	divide(data, 0, len(data)-1)
+}
 
-	for i := 0; i < len(data)-1; i++ {
-		//添加的时候使用插入排序??
-		if i%2 == 0 {
-			left = append(left, data[i])
-		}
+/**
+start: 序列起始位置
+bound: 序列结束位置
+*/
+func divide(data []int, start, bound int) {
+	mid := start + (bound-start)/2
 
-		if i%2 != 0 {
-			right = append(right, data[i])
+	if start == bound {
+		return
+	}
+	//分左边
+	divide(data, start, mid)
+
+	//分右边
+	divide(data, mid+1, bound)
+
+	mergeSort(data, start, mid+1, bound)
+}
+
+/**
+left:左序列开始位置
+right:右序列开始位置
+bound: 整个子序列结束位置
+*/
+func mergeSort(data []int, left, right, bound int) {
+	L := left
+	R := right
+	M := right - 1
+	if left == right {
+		return
+	}
+	temp := make([]int, 0)
+	//如果都有,直到一边已经完成
+	for L <= M && R <= bound {
+		if data[L] >= data[R] {
+			//如果左边比右边大,则把右边取出来,并且移动右序列的索引位置
+			temp = append(temp, data[R])
+			R++
+		} else {
+			//右边比左边大,则把左边的取出来,并且移动左序列的索引位置
+			temp = append(temp, data[L])
+			L++
 		}
 	}
 
-	//左边的插入排序
-	InertSort(left)
+	//还剩左序列
+	for L <= M {
+		temp = append(temp, data[L])
+		L++
+	}
 
-	//右边的插入排序
-	InertSort(right)
+	//还剩右序列
+	for R <= bound {
+		temp = append(temp, data[R])
+		R++
+	}
 
-	fmt.Println("left is: ", left)
-	fmt.Println("right is: ", right)
-
+	//然后将temp中的没个元素放置到原序列原来的位置中
+	for _, val := range temp {
+		//此处直接将temp里面的'值'取出来,不要直接使用temp[index]的方式('这里为引用')
+		data[left] = val //更新原始序列的位置上的值为'已经排好序'的temp
+		left++
+	}
 }
