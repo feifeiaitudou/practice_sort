@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"psort/ds"
 	"psort/sorts"
 )
 
@@ -10,8 +11,30 @@ import (
 
 func main() {
 	selectData := []int{
-		29, 19, 85, -1, 8888, 81, 92, 101, 9999, -1002, 8, 21, 3, 4, 5, 6, 88, 1, 28, 0, 42, 34,
+		-1, 9999999999, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
 	}
-	sorts.MergeSort(selectData)
+	//20 23 17
+	//17 20
+	sorts.QuickSort(selectData)
 	fmt.Println(selectData)
+
+}
+
+func testTree() {
+	//构造一颗二叉树,并且按照中序遍历出结果
+	arrData := [10]int{88, 22, 34, 1, 99, 33, 20, 38, 89, 100}
+	tree := new(ds.Tree)
+	for i := 0; i < 10; i++ {
+		//创建一个节点
+		node := ds.NewNode()
+		node.Data = arrData[i]
+		tree.AddNode(node)
+	}
+
+	//中序遍历结果为
+	bl := make([]*ds.TreeNode, 0)
+	bl = tree.GetNodesByLNR(tree.Root, bl)
+	for _, val := range bl {
+		fmt.Println(val.Data)
+	}
 }
