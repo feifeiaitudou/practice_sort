@@ -3,21 +3,33 @@ package main
 import (
 	"fmt"
 	"psort/ds"
-	"psort/sorts"
 )
 
 //https://mp.weixin.qq.com/s/IAZnN00i65Ad3BicZy5kzQ
 //对排序不是很了解,学学
 
 func main() {
-	selectData := []int{
+	/*selectData := []int{
 		-1, 9999999999, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
 	}
 	//20 23 17
 	//17 20
 	sorts.QuickSort(selectData)
 	fmt.Println(selectData)
+	*/
+	testThreadedTree()
+}
 
+func testThreadedTree() {
+	/*arrData := [10]int{88, 22, 34, 1, 99, 33, 20, 38, 89, 100}*/
+	arrData := [3]int{20, 1, 22}
+	threadedTree := new(ds.ThreadedTree)
+	for _, val := range arrData {
+		threadedTreeNode := ds.NewThreadedNode(val)
+		threadedTree.InitTree(threadedTreeNode)
+	}
+	fmt.Println("树已经构建好了,开始树的线索化(LNR)...")
+	threadedTree.EnabledThreadedTreeLNR(threadedTree.Root)
 }
 
 func testTree() {
