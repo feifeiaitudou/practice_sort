@@ -27,6 +27,16 @@ func main() {
 	//弹出元素
 	rInt, selectData := ds.PopHeapTop(selectData)
 	fmt.Println("弹出元素为: ", rInt, "弹出后: ", selectData)
+
+	//测试依次弹出最小元素(优先队列使用堆)
+	for {
+		rInt, selectData = ds.PopHeapTop(selectData)
+		if len(selectData) == 0 {
+			//已经弹出完了
+			break
+		}
+		fmt.Println("弹出元素: ", rInt)
+	}
 }
 
 func testThreadedTree() {
