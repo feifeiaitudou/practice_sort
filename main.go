@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"psort/ds"
+	"psort/sorts"
 )
 
 //https://mp.weixin.qq.com/s/IAZnN00i65Ad3BicZy5kzQ
@@ -19,7 +20,7 @@ func main() {
 	*/
 	//testThreadedTree()
 
-	//创建最小堆
+	/*//创建最小堆
 	ds.MinHeap(selectData, len(selectData)/2-1)
 	fmt.Println(selectData)
 	selectData = ds.AddToHeap(selectData, -22)
@@ -36,7 +37,10 @@ func main() {
 			break
 		}
 		fmt.Println("弹出元素: ", rInt)
-	}
+	}*/
+
+	sorts.HeapSort(selectData)
+	fmt.Println(selectData)
 }
 
 func testThreadedTree() {

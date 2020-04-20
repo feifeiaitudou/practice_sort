@@ -2,7 +2,40 @@ package ds
 
 //按照'调整'的方式构建最小堆
 //lastIndex 最后一个分支节点
-func MinHeap(data []int, lastIndex int) {
+/**
+data 待排序序列
+lastIndex 最后一个分支节点
+length 待堆化的序列长度(左右结点位置最大为length-1)
+*/
+func MinHeap(data []int, lastIndex int, length int) {
+
+	if lastIndex < 0 {
+		return //如果到根节点,退出
+	}
+	leftIndex := 2*lastIndex + 1
+	rightIndex := 2*lastIndex + 2
+
+	if leftIndex < len(data) && data[leftIndex] > data[lastIndex] {
+		if leftIndex <= length-1 {
+			data[leftIndex], data[lastIndex] = data[lastIndex], data[leftIndex]
+			//再次检查当前的左子树是否满足堆属性
+			MinHeap(data, leftIndex, length)
+		}
+	}
+
+	if rightIndex < len(data) && data[rightIndex] > data[lastIndex] {
+		if rightIndex <= length-1 {
+			data[rightIndex], data[lastIndex] = data[lastIndex], data[rightIndex]
+			//再次检查当前右子树是否满足堆属性
+			MinHeap(data, rightIndex, length)
+		}
+	}
+
+	lastIndex -= 1
+	MinHeap(data, lastIndex, length)
+}
+
+/*func MinHeap(data []int, lastIndex int) {
 
 	if lastIndex < 0 {
 		return //如果到根节点,退出
@@ -24,9 +57,9 @@ func MinHeap(data []int, lastIndex int) {
 	lastIndex -= 1
 	MinHeap(data, lastIndex)
 }
-
+*/
 //将元素添加到已经调整好的堆的最后面,然后再调整
-func AddToHeap(data []int, ele int) []int {
+/*func AddToHeap(data []int, ele int) []int {
 	data = append(data, ele)
 	MinHeap(data, len(data)/2-1)
 	return data
@@ -42,4 +75,4 @@ func PopHeapTop(data []int) (rInt int, rData []int) {
 	rData = data[0 : len(data)-1]
 	MinHeap(rData, len(rData)/2-1)
 	return
-}
+}*/
