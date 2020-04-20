@@ -28,7 +28,7 @@ func MinHeap(data []int, lastIndex int) {
 //将元素添加到已经调整好的堆的最后面,然后再调整
 func AddToHeap(data []int, ele int) []int {
 	data = append(data, ele)
-	MinHeap(data, (len(data)-1)/2)
+	MinHeap(data, len(data)/2-1)
 	return data
 }
 
@@ -40,6 +40,6 @@ func PopHeapTop(data []int) (rInt int, rData []int) {
 
 	//重新切片
 	rData = data[0 : len(data)-1]
-	MinHeap(rData, (len(rData)-1)/2)
+	MinHeap(rData, len(rData)/2-1)
 	return
 }

@@ -20,7 +20,7 @@ func main() {
 	//testThreadedTree()
 
 	//创建最小堆
-	ds.MinHeap(selectData, (len(selectData)-1)/2)
+	ds.MinHeap(selectData, len(selectData)/2-1)
 	fmt.Println(selectData)
 	selectData = ds.AddToHeap(selectData, -22)
 	fmt.Println(selectData)
