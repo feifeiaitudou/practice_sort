@@ -15,20 +15,16 @@ func MinHeap(data []int, lastIndex int, length int) {
 	leftIndex := 2*lastIndex + 1
 	rightIndex := 2*lastIndex + 2
 
-	if leftIndex < len(data) && data[leftIndex] > data[lastIndex] {
-		if leftIndex <= length-1 {
-			data[leftIndex], data[lastIndex] = data[lastIndex], data[leftIndex]
-			//再次检查当前的左子树是否满足堆属性
-			MinHeap(data, leftIndex, length)
-		}
+	if leftIndex <= length-1 && data[leftIndex] > data[lastIndex] {
+		data[leftIndex], data[lastIndex] = data[lastIndex], data[leftIndex]
+		//再次检查当前的左子树是否满足堆属性
+		MinHeap(data, leftIndex, length)
 	}
 
-	if rightIndex < len(data) && data[rightIndex] > data[lastIndex] {
-		if rightIndex <= length-1 {
-			data[rightIndex], data[lastIndex] = data[lastIndex], data[rightIndex]
-			//再次检查当前右子树是否满足堆属性
-			MinHeap(data, rightIndex, length)
-		}
+	if rightIndex <= length-1 && data[rightIndex] > data[lastIndex] {
+		data[rightIndex], data[lastIndex] = data[lastIndex], data[rightIndex]
+		//再次检查当前右子树是否满足堆属性
+		MinHeap(data, rightIndex, length)
 	}
 
 	lastIndex -= 1
