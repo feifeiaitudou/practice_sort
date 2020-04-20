@@ -9,15 +9,24 @@ import (
 //对排序不是很了解,学学
 
 func main() {
-	/*selectData := []int{
+	selectData := []int{
 		-1, 9999999999, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
 	}
 	//20 23 17
 	//17 20
-	sorts.QuickSort(selectData)
+	/*sorts.QuickSort(selectData)
 	fmt.Println(selectData)
 	*/
-	testThreadedTree()
+	//testThreadedTree()
+
+	//创建最小堆
+	ds.MinHeap(selectData, (len(selectData)-1)/2)
+	fmt.Println(selectData)
+	selectData = ds.AddToHeap(selectData, -22)
+	fmt.Println(selectData)
+	//弹出元素
+	rInt, selectData := ds.PopHeapTop(selectData)
+	fmt.Println("弹出元素为: ", rInt, "弹出后: ", selectData)
 }
 
 func testThreadedTree() {
