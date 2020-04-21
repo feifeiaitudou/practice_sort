@@ -57,7 +57,7 @@ func RadioSortWithTypeA(data []int) {
 	index := 0 //data的索引
 	if len(nn) > 0 {
 		for i := len(nn) - 1; i >= 0; i-- {
-			data[index] = -nn[i]
+			data[index] = -nn[i] //将正数转换为负数
 			index++
 		}
 	}
