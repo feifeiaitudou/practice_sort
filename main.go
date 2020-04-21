@@ -10,40 +10,17 @@ import (
 //对排序不是很了解,学学
 
 func main() {
-	selectData := []int{
+	/*selectData := []int{
 		122, -1, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, -199, 2, 300, 27,
-	}
-	//20 23 17
-	//17 20
-	/*sorts.QuickSort(selectData)
-	fmt.Println(selectData)
-	*/
-	//testThreadedTree()
-
-	/*//创建最小堆
-	ds.MinHeap(selectData, len(selectData)/2-1)
-	fmt.Println(selectData)
-	selectData = ds.AddToHeap(selectData, -22)
-	fmt.Println(selectData)
-	//弹出元素
-	rInt, selectData := ds.PopHeapTop(selectData)
-	fmt.Println("弹出元素为: ", rInt, "弹出后: ", selectData)
-
-	//测试依次弹出最小元素(优先队列使用堆)
-	for {
-		rInt, selectData = ds.PopHeapTop(selectData)
-		if len(selectData) == 0 {
-			//已经弹出完了
-			break
-		}
-		fmt.Println("弹出元素: ", rInt)
 	}*/
 
-	sorts.BucketSort(selectData)
-	fmt.Println(selectData)
+	selectData := []int{
+		122, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, 2, 300, 27,
+	}
 
-	/*sorts.HeapSort(selectData)
-	fmt.Println(selectData)*/
+
+	sorts.RadioSort(selectData)
+	fmt.Println(selectData)
 }
 
 func testThreadedTree() {

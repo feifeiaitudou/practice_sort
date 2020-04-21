@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 //http://www.wanfangdata.com.cn/details/detail.do?_type=conference&id=6040495
+//https://www.bbsmax.com/A/VGzlY7PVJb/
 
 //桶排序
 //将数据分成n个区间,每个区间对应一个桶,每个桶进行排序(归并或者快速),然后n个桶进行合并
