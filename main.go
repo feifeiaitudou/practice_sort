@@ -11,7 +11,7 @@ import (
 
 func main() {
 	selectData := []int{
-		99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
+		10000, -1, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, -199, 2, 300, 27,
 	}
 	//20 23 17
 	//17 20
@@ -39,7 +39,7 @@ func main() {
 		fmt.Println("弹出元素: ", rInt)
 	}*/
 
-	sorts.CountSort(selectData)
+	sorts.BucketSort(selectData)
 	fmt.Println(selectData)
 
 	/*sorts.HeapSort(selectData)
