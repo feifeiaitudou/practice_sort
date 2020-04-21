@@ -11,7 +11,7 @@ import (
 
 func main() {
 	selectData := []int{
-		-1, 9999999999, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
+		99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26,
 	}
 	//20 23 17
 	//17 20
@@ -39,8 +39,11 @@ func main() {
 		fmt.Println("弹出元素: ", rInt)
 	}*/
 
-	sorts.HeapSort(selectData)
+	sorts.CountSort(selectData)
 	fmt.Println(selectData)
+
+	/*sorts.HeapSort(selectData)
+	fmt.Println(selectData)*/
 }
 
 func testThreadedTree() {
