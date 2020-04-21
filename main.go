@@ -15,11 +15,10 @@ func main() {
 	}*/
 
 	selectData := []int{
-		122, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, 2, 300, 27,
+		-11, -92, -34, -1, 0, 122, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, 2, 300, 27, 0,
 	}
 
-
-	sorts.RadioSort(selectData)
+	sorts.RadioSortWithTypeA(selectData)
 	fmt.Println(selectData)
 }
 
