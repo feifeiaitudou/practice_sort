@@ -1,5 +1,10 @@
 package sorts
 
+import (
+	"fmt"
+)
+//http://www.wanfangdata.com.cn/details/detail.do?_type=conference&id=6040495
+
 //桶排序
 //将数据分成n个区间,每个区间对应一个桶,每个桶进行排序(归并或者快速),然后n个桶进行合并
 // n+k n+k 稳定排序 非原地排序
@@ -10,6 +15,7 @@ func BucketSort(data []int) {
 	min, max := getMinMax(data)
 
 	avg := (max-min)/10 + 1
+
 	arrBuc := [10]int{}
 
 	for i := 0; i < 10; i++ {
@@ -18,6 +24,7 @@ func BucketSort(data []int) {
 
 	//直接准备10个桶
 	buckets := [10][]int{}
+	//number := 0
 
 	for _, val := range data {
 		for j := len(arrBuc) - 1; j >= 0; j-- {
@@ -26,7 +33,11 @@ func BucketSort(data []int) {
 				break
 			}
 		}
+		/*number = int(math.Floor(float64((val - min) / avg)))
+		buckets[number] = append(buckets[number], val)*/
 	}
+
+	fmt.Println(buckets)
 
 	for i := 0; i < len(buckets); i++ {
 		sortBuckets(buckets[i])
