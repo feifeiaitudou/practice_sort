@@ -8,11 +8,70 @@ package sorts
 //太神奇了
 
 //负数如何基数排序? TypeA
-//浮点数如何基数排序?
+//浮点数如何基数排序? TypeB
 
 var buckets [10][]int
 
 //基数排序 包含负数?
+
+//包含浮点数怎么排?
+//浮点数暂时不实现
+//可以让点先消失,在分别取出符号,然后在加上点
+func RadioSortWithTypeB(data []float64) {
+	pn := make([]int, 0) //非负数
+	nn := make([]int, 0) //负数
+
+	for _, val := range data {
+		if val >= 0 {
+			pn = append(pn, val)
+			continue
+		}
+
+		if val < 0 {
+			nn = append(nn, -val) //将负数转换为正数
+		}
+	}
+
+	//先比较正数
+	max := getMax(pn)
+	base := 1
+	for max >= base {
+		for _, val := range pn {
+			mod := getPosData(val, base)
+			buckets[mod] = append(buckets[mod], val)
+		}
+		popList(pn, &buckets)
+		base *= 10
+	}
+
+	//再比较负数
+	max = getMax(nn)
+	base = 1
+	for max >= base {
+		for _, val := range nn {
+			mod := getPosData(val, base)
+			buckets[mod] = append(buckets[mod], val)
+		}
+		popList(nn, &buckets)
+		base *= 10
+	}
+
+	//将nn倒序拷贝到data上
+	index := 0 //data的索引
+	if len(nn) > 0 {
+		for i := len(nn) - 1; i >= 0; i-- {
+			data[index] = -nn[i] //将正数转换为负数
+			index++
+		}
+	}
+
+	//再将pn拷贝到data上
+	for _, val := range pn {
+		data[index] = val
+		index++
+	}
+}
+
 //将非负数与负数分成两个序列,分别排好后再合并到一起?
 func RadioSortWithTypeA(data []int) {
 	pn := make([]int, 0) //非负数

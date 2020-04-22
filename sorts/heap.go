@@ -16,7 +16,7 @@ func HeapSort(data []int) {
 //每一次将堆首部的元素放置到最后[交换],然后重新调整堆
 //这里为降序(小堆)(0, n-1; 1, n-2...)
 func heap(data []int, length int) {
-	if length <= 0 {
+	if length <= 1 {
 		return //没有数据了
 	}
 	//先'堆化'
