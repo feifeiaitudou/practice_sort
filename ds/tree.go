@@ -34,6 +34,7 @@ func (tree *Tree) AddNode(node *TreeNode) bool {
 			//左边? 先检查左节点是否存在
 			if NodeCurrent.L == nil {
 				NodeCurrent.L = node
+				node.P = NodeCurrent
 				fmt.Println("添加到左节点")
 				break
 			}
@@ -44,6 +45,7 @@ func (tree *Tree) AddNode(node *TreeNode) bool {
 		if node.Data > NodeCurrent.Data {
 			if NodeCurrent.R == nil {
 				NodeCurrent.R = node
+				node.P = NodeCurrent
 				fmt.Println("添加到右节点")
 				break
 			}
@@ -85,7 +87,12 @@ func (tree *Tree) OrderLoopLNR() {
 			node = node.L
 		} else if stack.Len() > 0 {
 			node = stack.Remove(stack.Back()).(*TreeNode)
-			fmt.Println(node.Data)
+			if node.P != nil {
+				fmt.Println(node.Data, "父节点:", node.P.Data)
+			} else {
+				fmt.Println(node.Data, "没有父节点...")
+			}
+
 			node = node.R
 		}
 	}

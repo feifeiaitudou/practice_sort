@@ -4,6 +4,7 @@ type TreeNode struct {
 	Data int //假设data为整数,此处最好是放置interface{}
 	L    *TreeNode
 	R    *TreeNode
+	P    *TreeNode //增加一个双亲结点
 }
 
 func NewNode() *TreeNode {
