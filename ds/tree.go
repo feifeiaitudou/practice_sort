@@ -1,6 +1,7 @@
 package ds
 
 import (
+	"container/list"
 	"fmt"
 )
 
@@ -61,4 +62,31 @@ func (tree *Tree) GetNodesByLNR(node *TreeNode, bl []*TreeNode) []*TreeNode {
 		bl = tree.GetNodesByLNR(node.R, bl)
 	}
 	return bl
+}
+
+//按照循环的方式遍历树的节点,依靠栈来实现 中序
+//递归的时候,默认会有地方在保存调用的结果
+//直接循环的时候没有地方保存每次的结果,所以,此处使用[栈]来模拟递归中的栈
+//golang中的栈使用list实现?
+func (tree *Tree) OrderLoopLNR() {
+
+	//先创建一个栈
+	stack := list.New()
+
+	if tree.Root == nil {
+		fmt.Println("空树")
+		return
+	}
+
+	node := tree.Root
+	for node != nil || stack.Len() > 0 {
+		if node != nil {
+			stack.PushBack(node)
+			node = node.L
+		} else if stack.Len() > 0 {
+			node = stack.Remove(stack.Back()).(*TreeNode)
+			fmt.Println(node.Data)
+			node = node.R
+		}
+	}
 }

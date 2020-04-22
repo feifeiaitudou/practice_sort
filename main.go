@@ -1,9 +1,9 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 	"psort/ds"
-	"psort/sorts"
 )
 
 //https://mp.weixin.qq.com/s/IAZnN00i65Ad3BicZy5kzQ
@@ -15,11 +15,35 @@ func main() {
 	}*/
 
 	selectData := []int{
-		-11, -92, -34, -1, 0, 122, 991, 90, 99, 54, 26, 93, 17, 77, 31, 44, 55, 20, 54, 54, 26, 2, 300, 27, 0,
+		88, 22, 34, 1, 99, 33, 20, 38, 89, 100,
 	}
 
-	sorts.RadioSortWithTypeA(selectData)
-	fmt.Println(selectData)
+	//尝试生成一棵树
+	tree := new(ds.Tree)
+	for _, val := range selectData {
+		node := ds.NewNode()
+		node.Data = val
+
+		tree.AddNode(node)
+	}
+
+	tree.OrderLoopLNR()
+
+	/*sorts.RadioSortWithTypeA(selectData)
+	fmt.Println(selectData)*/
+	//stackTest()
+}
+
+func stackTest() {
+	queue := list.New()
+	queue.PushBack(11)
+	queue.PushBack(22)
+	queue.PushBack(33)
+
+	for queue.Len() > 0 {
+		fmt.Println(queue.Remove(queue.Back()))
+	}
+
 }
 
 func testThreadedTree() {
